@@ -5,11 +5,12 @@ import { TypeOrmModule } from '@nestjs/typeorm';
   imports: [
     TypeOrmModule.forRoot({
       type: 'postgres',
-      host: 'aws-0-sa-east-1.pooler.supabase.com',
+      host: 'db.tvwaeokfmvdxlinlyhgv.supabase.co',
       port: +'5432',
-      username: 'postgres.tvwaeokfmvdxlinlyhgv',
-      password: 'TainaMariott1',
+      username: 'postgres',
+      password: 'NovaSenha0403@',
       database: 'postgres',
+      autoLoadEntities: true,
     }),
   ],
 })
