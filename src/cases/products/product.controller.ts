@@ -1,21 +1,28 @@
-import { Body, Controller, Delete, Get, HttpCode, HttpException, HttpStatus, Param, ParseUUIDPipe, Post, Put } from "@nestjs/common";
+import { Body, Controller, Delete, Get, HttpCode, HttpException, HttpStatus, Param, ParseUUIDPipe, Post, Put, Query } from "@nestjs/common";
 import { Product } from "./product.entity";
 import { ProductService } from "./product.service";
 import { promises } from "dns";
 import { get } from "http";
+import { CategoryService } from "../categories/category.service";
 
 
 @Controller('products')
 export class ProductController{
 
-    constructor(private readonly service: ProductService){}
+    constructor(
+        private readonly CategoryService: CategoryService,
+        private readonly service: ProductService
+    ){}
 
     @Get()
-    findAll(): Promise<Product[]>{
-        return this.service.findAll();
+    async findAll(@Query('categoryId', ParseUUIDPipe) categotyId: string): Promise<Product[]>{
+
+        const category = await this.CategoryService.findByID(categotyId);
+        return this.service.findAll(category ? category : undefined);
     }
 
     @Get(':id')
+
     async findById(@Param('id', ParseUUIDPipe) id: string): Promise<Product | null>{
         const found = this.service.findByID(id);
         
