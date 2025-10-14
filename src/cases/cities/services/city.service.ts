@@ -27,3 +27,4 @@ export class CityService {
         await this.repository.delete(id);
     }
 }
+
