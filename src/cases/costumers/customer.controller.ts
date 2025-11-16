@@ -1,25 +1,23 @@
 import { Body, Controller, Delete, Get, HttpCode, HttpException, HttpStatus, Param, ParseUUIDPipe, Post, Put } from "@nestjs/common";
-import { promises } from "dns";
-import { get } from "http";
-import { Customer } from "./customer.entity";
 import { CustomerService } from "./customer.service";
+import { Customer } from "./customer.entity";
 
 
 @Controller('customers')
-export class CustomerController{
+export class CustomerController {
 
-    constructor(private readonly service: CustomerService){}
+    constructor(private readonly service: CustomerService) { }
 
     @Get()
-    findAll(): Promise<Customer[]>{
+    findAll(): Promise<Customer[]> {
         return this.service.findAll();
     }
 
     @Get(':id')
-    async findById(@Param('id', ParseUUIDPipe) id: string): Promise<Customer | null>{
+    async findById(@Param('id', ParseUUIDPipe) id: string): Promise<Customer | null> {
         const found = this.service.findByID(id);
-        
-        if(!found){
+
+        if (!found) {
             throw new HttpException('Customer not found', HttpStatus.NOT_FOUND);
         }
 
@@ -27,16 +25,16 @@ export class CustomerController{
     }
 
     @Post()
-    create(@Body() customer: Customer) : Promise<Customer>{
+    create(@Body() customer: Customer): Promise<Customer> {
         return this.service.save(customer);
     }
 
     @Put(':id')
-    async update(@Param('id', ParseUUIDPipe) id: string, @Body () customer: Customer): Promise<Customer>{
+    async update(@Param('id', ParseUUIDPipe) id: string, @Body() customer: Customer): Promise<Customer> {
 
         const found = await this.service.findByID(id);
-        
-        if(!found){
+
+        if (!found) {
             throw new HttpException('Customer not found', HttpStatus.NOT_FOUND);
         }
 
@@ -47,11 +45,11 @@ export class CustomerController{
 
     @Delete(':id')
     @HttpCode(204)
-    async remove(@Param('id', ParseUUIDPipe) id: string): Promise<void>{
+    async remove(@Param('id', ParseUUIDPipe) id: string): Promise<void> {
 
         const found = await this.service.findByID(id);
-        
-        if(!found){
+
+        if (!found) {
             throw new HttpException('Customer not found', HttpStatus.NOT_FOUND);
         }
 
