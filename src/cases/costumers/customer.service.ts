@@ -15,7 +15,7 @@ export class CustomerService {
         return this.repository.find();
     }
 
-    findByID(id: string): Promise<Customer | null> {
+    findById(id: string): Promise<Customer | null> {
         return this.repository.findOneBy({ id: id });
     }
 

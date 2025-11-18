@@ -7,10 +7,14 @@ import { OrderService } from "./service/order.service";
 import { OrderItemService } from "./service/order-item.service";
 import { OrderController } from "./controller/order.controller";
 import { OrderItemController } from "./controller/ordem-item.controller";
+import { CustomerModule } from "../costumers/costumer.module";
 
 
 @Module({
-    imports:[TypeOrmModule.forFeature([Order, OrderItem])],
+    imports:[TypeOrmModule.forFeature([Order, OrderItem]),
+    CustomerModule
+],
+
     providers: [OrderService, OrderItemService],
     controllers: [OrderController, OrderItemController]
 })
