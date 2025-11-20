@@ -1,25 +1,21 @@
-import { Customer } from "src/cases/costumers/customer.entity";
-import { Product } from "src/cases/products/product.entity";
-import { Column, CreateDateColumn, Entity, ManyToOne, PrimaryGeneratedColumn } from "typeorm";
+import { Column, Entity, ManyToOne, PrimaryGeneratedColumn } from "typeorm";
+import { Product } from './../../products/product.entity';
 import { Order } from "./order.entity";
 
-@Entity('order-item')
+@Entity('order_item')
 export class OrderItem {
-
     @PrimaryGeneratedColumn('uuid')
     id: string;
 
     @ManyToOne(() => Order)
     order: Order;
 
-    @ManyToOne(() => Product, {eager: true, nullable: false})
+    @ManyToOne(() => Product, { eager: true, nullable: false })
     product: Product;
 
-    @Column('decimal', {nullable: false, precision: 10, scale:2})
-    quantity : number;
+    @Column({ nullable: false })
+    quantity: number;
 
-    @Column('decimal', {nullable: false, precision: 10, scale:2})
+    @Column('decimal', { nullable: false, precision: 10, scale: 2 })
     value: number;
-
-
 }

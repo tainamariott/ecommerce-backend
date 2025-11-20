@@ -1,12 +1,13 @@
 import { Module } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
-import { CategoryModule } from './cases/categories/category.module';
-import { BrandModule } from './cases/brands/brand.module';
-import { ProductModule } from './cases/products/product.module';
 import { ConfigModule } from '@nestjs/config';
-import { CityModule } from './cases/cities/city.module';
-import { CustomerModule } from './cases/costumers/costumer.module';
-import { OrderModule } from './cases/orders/order.module';
+import { CategoryModule } from './cases/categories/category.module.js';
+import { BrandModule } from './cases/brands/brand.module.js';
+import { ProductModule } from './cases/products/product.module.js';
+import { CityModule } from './cases/cities/city.module.js';
+import { CustomerModule } from './cases/costumers/costumer.module.js';
+import { OrderModule } from './cases/orders/order.module.js';
+
 
 @Module({
   imports: [
