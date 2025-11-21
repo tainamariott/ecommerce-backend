@@ -1,4 +1,3 @@
-
 import { Column, CreateDateColumn, Entity, ManyToOne, OneToMany, PrimaryGeneratedColumn, UpdateDateColumn } from "typeorm";
 import { OrderItem } from "./order-item.entity";
 import { Customer } from "src/cases/costumers/customer.entity";

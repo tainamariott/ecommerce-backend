@@ -4,7 +4,6 @@ import { InjectRepository } from "@nestjs/typeorm";
 import { Injectable } from "@nestjs/common";
 import { Customer } from "src/cases/costumers/customer.entity";
 
-
 @Injectable()
 export class OrderService {
 
